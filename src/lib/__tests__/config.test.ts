@@ -26,7 +26,7 @@ describe('config', () => {
 		it('returns default when env not set', () => {
 			delete process.env['TIMBERLOGS_CONFIG_DIR'];
 			const dir = getConfigDir();
-			expect(dir).toContain('.config/timberlogs');
+			expect(dir).toContain(join('.config', 'timberlogs'));
 		});
 	});
 
@@ -56,7 +56,7 @@ describe('config', () => {
 			expect(content).toEqual({sessionToken: 'tl_sess_test'});
 		});
 
-		it('sets secure file permissions', () => {
+		it.skipIf(process.platform === 'win32')('sets secure file permissions', () => {
 			writeConfig({sessionToken: 'tl_sess_test'});
 			const path = getConfigPath();
 			const stats = statSync(path);
