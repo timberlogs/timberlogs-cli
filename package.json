@@ -1,6 +1,6 @@
 {
   "name": "timberlogs-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Official Timberlogs CLI — query logs, inspect flows, view stats from your terminal",
   "keywords": [
     "timberlogs",
@@ -37,7 +37,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "ink": "^5.2.0",
+    "ink": "^5.2.1",
     "ink-spinner": "^5.0.0",
     "ink-text-input": "^6.0.0",
     "pastel": "^3.0.0",
@@ -47,12 +47,12 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@sindresorhus/tsconfig": "^7.0.0",
-    "@types/react": "^18.3.18",
-    "eslint": "^10.0.0",
+    "@types/react": "^18.3.31",
+    "eslint": "^10.6.0",
     "eslint-plugin-react-hooks": "5.2.0",
-    "tsup": "^8.4.0",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.56.0",
-    "vitest": "^4.0.18"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.62.1",
+    "vitest": "^4.1.9"
   }
 }
