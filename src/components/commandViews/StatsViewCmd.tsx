@@ -39,19 +39,17 @@ export default function StatsViewCmd({flags, token, onBack, onDone, onError}: Pr
 			const fromDate = toDateString(fromMs);
 			const toDate = toDateString(toMs);
 
-			const [statsResponse, summaryResponse] = await Promise.all([
-				client.get('/v1/stats', {
-					from: fromDate,
-					to: toDate,
-					groupBy: flags['group-by'],
-					source: flags.source,
-					environment: flags.env,
-					dataset: flags.dataset,
-				}).then(raw => StatsResponseSchema.parse(raw)),
-				client.get('/v1/stats/summary')
-					.then(raw => StatsSummaryResponseSchema.parse(raw))
-					.catch(() => null),
-			]);
+			const statsResponse = await client.get('/v1/stats', {
+				from: fromDate,
+				to: toDate,
+				groupBy: flags['group-by'],
+				source: flags.source,
+				environment: flags.env,
+				dataset: flags.dataset,
+			}).then(raw => StatsResponseSchema.parse(raw));
+			const summaryResponse = await client.get('/v1/stats/summary')
+				.then(raw => StatsSummaryResponseSchema.parse(raw))
+				.catch(() => null);
 
 			const totals = {
 				debug: (statsResponse.totals?.['debug'] as number) ?? 0,
