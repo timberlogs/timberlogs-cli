@@ -72,4 +72,6 @@ jobs:
         run: |
           npm config delete //registry.npmjs.org/:_authToken || true
           unset NODE_AUTH_TOKEN
+          OIDC_RESPONSE="$(curl -sSf -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm%3Aregistry.npmjs.org")"
+          export NPM_ID_TOKEN="$(node -e "process.stdout.write(JSON.parse(process.argv[1]).value)" "$OIDC_RESPONSE")"
           npm publish --access public
